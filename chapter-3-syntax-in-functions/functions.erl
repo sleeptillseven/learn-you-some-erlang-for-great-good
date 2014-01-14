@@ -1,5 +1,5 @@
 -module(functions).
--export([greet/2, head/1]).
+-export([greet/2, head/1, second/1]).
 
 %% Greet prints a greeting message
 %% depending on the gender given.
@@ -13,3 +13,6 @@ greet(_, Name) ->
 %% Return the first argument of a list.
 head([])    -> [];
 head([H|_]) -> H.
+
+%% Return the second argument of a list.
+second([_,X|_]) -> X.
