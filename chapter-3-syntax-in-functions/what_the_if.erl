@@ -1,5 +1,5 @@
 -module(what_the_if).
--export([heh_fine/0, oh_my/1]).
+-export([heh_fine/0, oh_my/1, help_me/1]).
 
 %% This method demonstrates the need of a return value
 %% of functions and that an true branch is needed.
@@ -23,3 +23,13 @@ oh_my(N) ->
     if N =:= 2 -> might_succeed;
     true -> always_does %% This is Erlang's if's 'else!'
 end.
+
+%% Demonstration of how every expression has to return something.
+help_me(Animal) ->
+    Talk = if Animal == cat  -> "meow";
+              Animal == beef -> "moow";
+              Animal == dog  -> "bark";
+              Animal == tree -> "bark";
+              true -> "fgdadfgna"
+           end,
+    {Animal, "says " ++ Talk ++ "!"}.
