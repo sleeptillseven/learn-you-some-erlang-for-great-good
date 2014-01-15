@@ -21,4 +21,5 @@ second([_,X|_]) -> X.
 %% for driving a car.
 right_age(X) when X >= 16, X < 105 ->
     true;
-right_age(_) -> false.
+right_age(_) ->
+    false.
