@@ -1,6 +1,7 @@
 -module(recursive).
 -export([fac/1, len/1, tail_len/1, tail_len/2, tail_fac/1, tail_fac/2,
-        duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1]).
+        duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1,
+        quicksort/1]).
 
 
 %% Compute the factorial of a give non-negative number.
@@ -53,3 +54,16 @@ tail_reverse(List) -> tail_reverse(List, []).
 
 tail_reverse([], Acc) -> Acc;
 tail_reverse([H|T], Acc) -> tail_reverse(T, [H|Acc]).
+
+
+%% Quicksort in Erlang
+quicksort([]) -> [];
+quicksort([Pivot|Rest]) ->
+    {Smaller, Larger} = partition(Pivot, Rest, [], []),
+    quicksort(Smaller) ++ [Pivot] ++ quicksort(Larger).
+
+partition(_, [], Smaller, Larger) -> {Smaller, Larger};
+partition(Pivot, [H|T], Smaller, Larger) ->
+    if H =< Pivot -> partition(Pivot, T, [H|Smaller], Larger);
+       H > Pivot -> partition(Pivot, T, Smaller, [H|Larger])
+    end.
