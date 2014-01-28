@@ -1,6 +1,6 @@
 -module(recursive).
 -export([fac/1, len/1, tail_len/1, tail_len/2, tail_fac/1, tail_fac/2,
-        duplicate/2, tail_duplicate/2]).
+        duplicate/2, tail_duplicate/2, reverse/1, tail_reverse/1]).
 
 
 %% Compute the factorial of a give non-negative number.
@@ -41,3 +41,15 @@ tail_duplicate(0,_,List) ->
   List;
 tail_duplicate(N, Term, List) ->
   tail_duplicate(N-1, Term, [Term|List]).
+
+
+%% A function which reverses the input.
+reverse([]) -> [];
+reverse([H|T]) -> reverse(T) ++ [H].
+
+
+%% A tail recursive version of reverse.
+tail_reverse(List) -> tail_reverse(List, []).
+
+tail_reverse([], Acc) -> Acc;
+tail_reverse([H|T], Acc) -> tail_reverse(T, [H|Acc]).
