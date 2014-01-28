@@ -31,17 +31,16 @@ tail_len([_|T], Acc) -> tail_len(T, Acc+1).
 %% A function that duplicates the input a given number of times.
 duplicate(0, _) -> [];
 duplicate(N, Term) when N > 0 ->
-  [Term|duplicate(N-1, Term)].
+    [Term|duplicate(N-1, Term)].
 
 
 %% A tail recursive version of duplicate.
 tail_duplicate(N, Term) ->
-  tail_duplicate(N, Term, []).
+    tail_duplicate(N, Term, []).
 
-tail_duplicate(0,_,List) ->
-  List;
+tail_duplicate(0,_,List) -> List;
 tail_duplicate(N, Term, List) ->
-  tail_duplicate(N-1, Term, [Term|List]).
+    tail_duplicate(N-1, Term, [Term|List]).
 
 
 %% A function which reverses the input.
